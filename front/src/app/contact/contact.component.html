@@ -1,0 +1,42 @@
+	<h1>Visit us</h1>
+	<hr class="soften"/>	
+	<div class="row">
+
+		<div class="span4">
+		<h4>Email Us</h4>
+		<form #feedBack="ngForm" name="FeedBack Form" class="form-horizontal" (ngSubmit)="onSubmit(feedBack)" 
+    method="post">
+        <fieldset>
+          <div class="control-group">
+           
+              <input required type="text" placeholder="Name" name="myName" class="input-xlarge" [(ngModel)]="visitor.name" #nam="ngModel"/>
+
+           <div *ngIf="nam.errors && nam.dirty">
+                <div *ngIf="nam.errors.required" class="alert alert-danger">
+                  Name field is mandatory.
+                </div>
+            </div>
+          </div>
+          
+		   <div class="control-group">
+           
+              <input required type="text" placeholder="Email" class="input-xlarge" name="myEmail" [(ngModel)]="visitor.email"/>
+           
+          </div>
+		   <div class="control-group">
+           
+              <input required type="text" placeholder="Subject" name="mySubject" class="input-xlarge" [(ngModel)]="visitor.subject"/>
+          
+          </div>
+          <div class="control-group">
+
+              <textarea required rows="3" id="textarea" name="myFeedback" class="input-xlarge" placeholder="feedback" [(ngModel)]="visitor.feedback"></textarea>
+
+          </div>
+
+            <button class="btn btn-large" type="submit" [disabled]="feedBack.form.invalid">Send Messages</button>
+
+        </fieldset>
+      </form>
+		</div>
+	</div>

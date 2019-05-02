@@ -1,0 +1,83 @@
+
+<div class="container-fluid" style="padding:20px;">
+	<button class="btn btn-lg btn-primary center-block" data-toggle="modal" data-target="#myModal">Add New Cateogary</button>
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<a href="#" data-dismiss="modal" class="close">&times;</a>
+				</div>
+				<div class="modal-body">
+					<form  method="post" enctype="multipart/form-data" class="form-horizontal" style="padding:20px;" (ngSubmit)="OnSubmit()">
+						<div class="form-group">
+								<label for="itemname" class="control-label">Enter Item :</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control input-lg" type="text" name="uname" id="itemname" placeholder="Enter Item Name" [(ngModel)]="item.name">
+						</div>
+						<div class="form-group">
+							<input class="form-control input-lg" type="file" placeholder="Enter Image" name="catImage" ng2FileSelect [uploader]="uploader" />
+						</div>
+						<div class="form-group"><input type="submit" class="btn btn-success btn-lg" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"/></div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="table-responsive" [hidden]="!items" style="margin-top:20px;max-height:450px;overflow-y: scroll;">
+		<table class="table table-hover table-bordered">
+			<tr>
+				<th class="text-center">S.no</th>
+				<th class="text-center">Item</th>
+				<th class="text-center">Image</th>
+				<th class="text-center">Date</th>
+				<th class="text-center">Action</th>
+			</tr>
+			<tr class="text-center" *ngFor="let item of items;let i=index ">
+				<td>{{i+1}}</td>
+				<td>{{item.cname}}</td>
+				<td><img src="http://localhost:3000/{{item.cimagePath}}" width="200" height="200" alt="{{item.cimagePath}}"/></td>
+				<td>{{item.dat | date:'dd-MM-yyyy , hh:mm:ss'}}</td>
+				<td>
+					<button class="btn btn-danger" (click)="sendSelectedItem(item)" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-edit"></span></button>
+					&nbsp;&nbsp;
+					<button class="btn btn-warning" (click)="removeItem(item);"><span class="glyphicon glyphicon-remove"></span></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<div class="modal fade" id="myModal2">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<a href="#" data-dismiss="modal" class="close">&times;</a>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" style="padding:20px;" (ngSubmit)="updateItem(selectedItem)">
+						<div class="form-group">
+								<label for="itemname" class="control-label">Enter Item :</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control input-lg" type="text" name="uname" id="itemname" value="{{selectedItem.cname}}" [(ngModel)]="selectedItem.cname">
+						</div>
+						<div class="form-group">
+							<input class="form-control input-lg" type="file" placeholder="Enter Image" name="catImage" ng2FileSelect [uploader]="uploader" />
+						</div>
+
+						<div class="form-group"><input type="submit" class="btn btn-success btn-lg" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"/></div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>

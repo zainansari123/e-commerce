@@ -1,0 +1,16 @@
+
+<ul class="thumbnails">
+	<li class="span3" *ngFor="let p of fetchedProducts | paginate:{itemsPerPage:3,currentPage:page}">
+	<div class="thumbnail">
+					<a href="product_details.html">
+					<img src="http://localhost:3000/{{p.pimagePath}}" alt="{{p.pname}}" width="200" style="height:200px;"></a>
+					<div class="caption">
+					  <h5>{{p.pname}}</h5>
+					 
+					  <h4 style="text-align:center"><a class="btn" routerLink="productDetails/{{p.pname}}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rs.{{p.price}}</a></h4>
+					</div>
+	</div>
+</li>
+</ul>
+<pagination-controls (pageChange)="page=$event"></pagination-controls>
+<router-outlet></router-outlet>

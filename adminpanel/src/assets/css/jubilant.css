@@ -1,0 +1,188 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+a#menu.menu{
+line-height:56px;
+}
+ul{
+	margin-bottom:0;
+}
+header{
+	height:60px;
+	background-color:black;
+}
+.companyLogo{
+	float:left;
+	line-height:60px;padding:0 5px;
+	padding-left:20px;
+	font-size:20px;
+}
+.companyLogo ,.tripleHBar a{
+	color:red;
+}
+.tripleHBar a{
+	font-size:20px;padding:0 5px;
+}
+.tripleHBar{
+float:right;
+border:2px solid red;
+}
+.tripleHBar:hover{
+	background-color:#ccc;
+}
+header::after{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+/* Creates Toggle Menu */
+.toggleMenu{
+	position:absolute;
+	height:110px;
+	top:60px;
+	width:100%;
+	border-top:solid #ccc;
+}
+.toggleMenu ul{
+	list-style-type:none;
+}
+.toggleMenu ul li a{
+	text-decoration:none;
+	line-height:60px;
+	padding:5px 5px 5px 20px;
+	color:#ccc;
+	font-size:20px;
+}
+.toggleMenu ul li{
+	background-color:#080808;
+}
+.toggleMenu ul li a:hover{
+	color:white;
+	background-color:#080808;
+}
+.toggleMenu{
+	display:none;
+}
+/*Creates Nav(sideBar) Bar*/
+.sidebar{
+	background-color:pink;
+	width:35%;
+	height:1000px;
+	float:left;
+	margin-left:0px;
+}
+
+.sidebar>ul{
+	list-style-type: none;
+}
+.sidebar>ul li:first-child a{
+	background-color:blue;
+	color:white;
+}
+
+.sidebar>ul>li>a{
+	text-decoration: none;
+	color:blue;
+	display:block;
+	width:inherit;
+	text-align: left;
+	padding:10px;
+	font-size:10px;
+}
+.sidebar>ul>li:not(:first-child)>a:hover
+{
+background-color:white;
+}
+.appName{
+	background-color:maroon;
+	color:white;
+	padding:10px;
+}
+.app-container{
+	float:right;
+	width:65%;
+}
+.outer-container{
+	background-color:aqua;height:1000px;
+}
+.outer-container:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+/* Classes Used By JS starts*/
+.toggleSideBar{
+width:15%;
+}
+
+.toggleAppContainer{
+width:85%;
+height:100vh;
+}
+.toggleSideBar>ul>li:not(:last-child)>a{
+opacity:0;
+}
+.sidebar>ul>li>a.right{
+	display:none;
+	opacity:.7;
+	padding-left:0;
+}
+/*Classes Used by JS ends*/
+@media screen and (min-width:768px){
+.sidebar{
+	width:20%;
+}
+.sidebar>ul>li>a{
+	font-size:15px;
+	}
+.app-container{
+width:80%;
+}
+.tripleHBar{
+	display:none;
+}
+.toggleMenu{
+	position:static;
+	display:block;
+	border:none;
+}
+.toggleMenu > div{
+	float:right;
+	margin-right:20px;
+}
+.toggleMenu ul li {
+	display:inline-block;
+}
+.toggleMenu::after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.companyLogo{
+	line-height:60px;
+	padding-left:20px;
+}
+
+
+/* Classes Used By JS starts*/
+.toggleSideBar{
+width:5%;
+}
+
+.toggleAppContainer{
+width:95%;
+}
+/*Classes Used by JS ends*/
+
+}
+
+
+
+
+
+
+
+

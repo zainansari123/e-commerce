@@ -1,0 +1,71 @@
+<!-- Sidebar ================================================== -->
+	<div id="sidebar" class="span3">
+		<div class="well well-small"><a id="myCart" href="product_summary.html"><img src="assets/themes/images/ico-cart.png" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
+
+		<div class="well well-small">
+		<a id="myCart" routerLink="/">LATEST PRODUCTS  
+		<span class="badge badge-warning pull-right">3</span></a>
+		</div>
+
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a>CATEOGARIES AVAILABLE</a>
+				<ul>
+					<li *ngFor="let item of items">
+						<a  routerLinkActive="active" routerLink="cateogary/{{item.cname}}">
+							<i class="icon-chevron-right"></i>
+							{{item.cname}}
+						</a>
+						
+					</li>
+				</ul>
+			</li>
+			
+		</ul>
+		<br/>
+		<!--<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a>Filter</a>
+				<ul>
+					<li>
+						
+				<label for="">Enter Min Price </label>	<input type="text" [(ngModel)]="selectedMinPrice"/>
+					<label for="">Enter Max Price </label> <input type="text" [(ngModel)]="selectedMaxPrice"/>
+					<input type="button" class="btn btn-sm btn-success" value="GO" 
+					(click)="findProductPriceWise()"/>
+					</li>
+				</ul>
+			</li>
+			
+		</ul>-->
+
+	<!--	<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a>Filter By Price</a>
+				<ul>
+					<li>
+						<select name="price" id="priceId" [(ngModel)]="selectedPriceRange" (change)="findProductPriceWise()">
+							<option *ngFor="let p of price" >{{p}}</option>
+						</select>
+					</li>
+				</ul>
+			</li>
+			
+		</ul>-->
+	
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a>Filter By Price</a>
+				<ul>
+					<li>
+						<div *ngFor="let p of price" (change)="findProductPriceWise(p)">
+							<input type="radio" name="price" value="{{p}}"/>{{p}}
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+
+<!--
+	<div class="well well-small">
+		<a id="myCart" routerLink="/sliderForPrice">FILTER BY PRICE</a>
+	</div>-->
+</div>
+<!-- Sidebar end=============================================== -->

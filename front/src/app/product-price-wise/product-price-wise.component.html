@@ -1,0 +1,17 @@
+
+
+<ul class="thumbnails" style="display:block;">
+				<li class="span3" *ngFor="let p of fetchedProductsPriceWise | paginate:{itemsPerPage:1,currentPage:page}" style="display: block;
+    margin: 10px auto;float: none;width:50%; border:solid #52575C">
+				  <div class="thumbnail">
+					<a href="product_details.html">
+					<img src="http://localhost:3000/{{p.pimagePath}}" alt="{{p.pimagePath}}" width="200" height="200"></a>
+					<div class="caption" >
+					  <h5>{{p.name}}</h5>
+					  <h4><a class="btn" routerLink="cateogary/{{p.cname}}/productDetails/{{p.name}}">VIEW</a> <span class="pull-right">{{p.price}}</span></h4>
+					  <p><strong>{{p.dat | date : 'dd-MM-yyyy hh:mm:ss'}}</strong></p>
+					</div>
+				  </div>
+				</li>
+</ul>		
+<pagination-controls (pageChange)="page=$event"></pagination-controls>	

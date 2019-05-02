@@ -1,0 +1,16 @@
+<!--{{allProducts | json }}-->
+<ul class="thumbnails">
+	<li class="span3" *ngFor="let p of allProducts | search : searchText : selectedCat">
+	<div class="thumbnail">
+					<a href="product_details.html">
+					<img src="http://localhost:3000/{{p.pimagePath}}" alt="{{p.name}}" width="200" style="height:200px;"></a>
+					<div class="caption">
+					  <h5>{{p.name}}</h5>
+					 
+					  <h4 style="text-align:center"><a class="btn" routerLink="../../cateogary/{{p.cname}}/productDetails/{{p.name}}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rs.{{p.price}}</a></h4>
+					</div>
+	</div>
+</li>
+</ul>
+
+<router-outlet></router-outlet>

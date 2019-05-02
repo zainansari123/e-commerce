@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0;margin-bottom:0px;">
+		<div class="container-fluid">
+					<div class="navbar-header">
+						<a href="#" class="navbar-brand">Project Name</a>
+						<button class="navbar-toggle" data-target=".myNav" data-toggle="collapse" >
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+		
+					<ul class="navbar-nav nav navbar-right collapse navbar-collapse myNav">
+						<li><a href="javascript:void(0)"><span class="glyphicon glyphicon-user" style="text-decoration:none;"></span>&nbsp;Welcome {{title}} </a></li>
+						<li><a href="javascript:void(0)">Settings</a></li>
+						<li><a href="javascript:void(0)">Profile</a></li>
+						<li><a href="javascript:void(0)" (click)="doLogOut()">LogOut</a></li>
+					</ul>
+					<form class="navbar-nav nav navbar-form collapse navbar-collapse navbar-right myNav">
+						<div class="form-group">
+							<input type="text" name="uname" class="form-control" placeholder="Search...">
+						</div>
+					</form>
+					</div>
+	</nav>
+	<div class="container-fluid" style="margin-top:70px;">
+			<div class="row">
+				<div class="col-sm-3">
+				<ul class="list-group">
+						<a routerLink="default" routerLinkActive="active" class="list-group-item">Default</a>
+						<a routerLink="product" routerLinkActive="active" class="list-group-item">Product</a>
+						<a routerLink="cateogary" routerLinkActive="active" class="list-group-item">Cateogary</a>
+			</ul>
+				</div>
+				<div class="col-sm-9">
+					<router-outlet></router-outlet>
+				</div>
+			</div>
+	</div>

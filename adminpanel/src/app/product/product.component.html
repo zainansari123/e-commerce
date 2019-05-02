@@ -1,0 +1,193 @@
+<div class="container-fluid" style="padding:20px;">
+	<button class="btn btn-lg btn-primary center-block" data-toggle="modal" data-target="#myModal">Add New Product </button>
+</div>
+<!--{{fetchedProducts | json }} <br>
+{{items | json }}-->
+<div class="panel-group" id="accordian">
+<div class="panel panel-default" *ngFor="let item of items;let i=index;">
+	<div class="panel-heading" data-toggle="collapse" attr.data-target="#{{item._id}}" data-parent="#accordian">
+		<h1 class="panel-title"><a href="javascript:void(0)">{{item.cname}} &nbsp;&nbsp;<span>({{countProducts(item)}})</span></a></h1>
+	</div>
+	<div class="panel-body collapse" id="{{item._id}}">
+		<div class="panel-group" id="accordian{{item._id}}">
+		<span *ngIf="item.products.length==0">
+					<strong>No Product to display</strong>
+				</span>
+			<div class="panel panel-info" *ngFor="let pro of fetchedProducts;" [hidden]="item.cname!=pro.cname"> 
+					<div class="panel-heading" data-toggle="collapse" attr.data-target="#{{pro._id}}" attr.data-parent="#accordian{{item._id}}" *ngIf="item.cname==pro.cname">
+						<h1 class="panel-title" style="cursor:pointer;"><a href="javascript:void(0)">{{pro.name}}</a>
+				</h1>
+					</div>
+					<div class="panel-body collapse" id="{{pro._id}}" *ngIf="item.cname==pro.cname">
+
+					<span class="pull-right">
+					<button class="btn btn-danger" (click)="sendSelectedProduct(pro)" data-toggle="modal" attr.data-target="#modal2{{pro._id}}"><span class="glyphicon glyphicon-edit"></span></button>
+							&nbsp;&nbsp;
+					<button class="btn btn-warning" (click)="removeProduct(pro);"><span class="glyphicon glyphicon-remove"></span></button>
+					</span>
+					<span class="clearfix"></span>
+					
+						<p>
+							<strong>OS :</strong> <span>{{pro.os}}</span>
+							<strong>Price :</strong> <span>{{pro.price}}</span>
+							<strong>Warranty :</strong> <span>{{pro.warranty}}</span>
+							<strong>Processor :</strong> <span>{{pro.processor}}</span>
+							<strong>Dat :</strong> <span>{{pro.dat | date : 'dd-MM-yyyy hh:mm:ss'}}</span>
+
+						</p>
+						<img class="pull-right" src="http://localhost:3000/{{pro.pimagePath}}" width="100" height="100" alt="{{pro.pimagePath}}"/>
+
+							
+							<!-- Modal 2 -->
+
+	<div class="modal fade" id="modal2{{pro._id}}">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<a href="#" data-dismiss="modal" class="close">&times;</a>
+				</div>
+				<div class="modal-body" style="height:400px;overflow-y:scroll;">
+					<form  method="post" enctype="multipart/form-data" class="form-horizontal" style="padding:20px;" (ngSubmit)="updateProduct(selectedProduct)"> 
+					<div class="form-group">  
+
+						<label for="itemname" class="control-label">Select Cateogary : </label>
+					</div>
+						<div class="form-group">
+							<select class="form-control" name="cateogary"
+							  required disabled>
+							 	<option selected={{selectedProduct.cname}}>{{selectedProduct.cname}}</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="proName" class="control-label">Enter Product Name :</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="proName" id="proName" [(ngModel)]="selectedProduct.name" value={{selectedProduct.name}}>
+						</div>
+
+						<div class="form-group">
+							<label for="proPrice" class="control-label">Enter Product Price :</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="number" name="proPrice" id="proPrice" [(ngModel)]="selectedProduct.price" value={{selectedProduct.name}}>
+						</div>
+
+
+						<div class="form-group">
+							<label for="os" class="control-label">OS:</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="os" id="os"  [(ngModel)]="selectedProduct.os" value={{selectedProduct.os}}>
+						</div>
+
+						<div class="form-group">
+							<label for="warranty" class="control-label">Warranty : </label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="warranty" id="warranty"  [(ngModel)]="selectedProduct.warranty" value="{{selectedProduct.warranty}}">
+						</div>
+
+						<div class="form-group">
+							<label for="processor" class="control-label">Processor : </label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="processor" id="processor"  [(ngModel)]="selectedProduct.processor" value="{{selectedProduct.processor}}">
+						</div>
+
+						<div class="form-group">
+							<input class="form-control" type="file" placeholder="Enter Image" name="proImage" type="file" placeholder="Enter Image" name="catImage" ng2FileSelect [uploader]="uploader">
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-success" 
+							(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"/>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div> <!-- ends Modal for updating form-->
+
+						
+					</div><!-- ends Panel Body-->
+
+				</div>
+			</div>
+	</div>
+</div>
+</div>
+		
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<a href="#" data-dismiss="modal" class="close">&times;</a>
+				</div>
+				<div class="modal-body" style="height:400px;overflow-y:scroll;">
+					<form  method="post" enctype="multipart/form-data"class="form-horizontal" style="padding:20px;" (ngSubmit)="onSubmit()">
+					<div class="form-group">
+						<label for="itemname" class="control-label">Select Cateogary : </label>
+					</div>
+						<div class="form-group">
+							<select class="form-control" name="cateogary"
+							 [(ngModel)]="product.cname" required>
+							 <option>----Select Items----</option>
+						<option *ngFor="let item of items">{{item.cname}}</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="proName" class="control-label">Enter Product Name :</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="proName" id="proName" placeholder="Enter Product Name" [(ngModel)]="product.name">
+						</div>
+
+						<div class="form-group">
+							<label for="proPrice" class="control-label">Enter Product Price :</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="number" name="proPrice" id="proPrice" placeholder="Enter Product Price" [(ngModel)]="product.price">
+						</div>
+
+
+						<div class="form-group">
+							<label for="os" class="control-label">OS:</label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="os" id="os" placeholder="Enter Product OS" [(ngModel)]="product.os">
+						</div>
+
+						<div class="form-group">
+							<label for="warranty" class="control-label">Warranty : </label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="warranty" id="warranty" placeholder="Enter Product warranty" [(ngModel)]="product.warranty">
+						</div>
+
+						<div class="form-group">
+							<label for="processor" class="control-label">Processor : </label>
+						</div>
+						<div class="form-group">
+								<input class="form-control" type="text" name="processor" id="processor" placeholder="Enter Product processor" [(ngModel)]="product.processor">
+						</div>
+
+						<div class="form-group">
+							<input class="form-control" type="file" placeholder="Enter Image" name="proImage" type="file" placeholder="Enter Image" name="catImage" ng2FileSelect [uploader]="uploader">
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-success" 
+							(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"/>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	
+	
+

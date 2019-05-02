@@ -1,0 +1,231 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+ul{
+	margin-bottom:0;
+}
+header{
+	height:60px;
+	background-color:black;
+	position:fixed;
+	top:0;
+	width:100%;
+	left:0;
+	right:0;
+}
+.companyLogo{
+	float:left;
+	line-height:60px;padding:0 5px;
+	padding-left:20px;
+	font-size:20px;
+}
+
+.tripleHBar{
+float:right;
+border:2px solid red;
+margin-right:18px;
+}
+header::after{
+	content:"";
+	display:block;
+	clear:both;
+}
+a#menu.menu{
+line-height:56px;
+}
+.companyLogo a:hover{
+	text-decoration: none;
+}
+.companyLogo>a ,.tripleHBar a{
+	color:red;
+}
+.tripleHBar:hover{
+	background-color:#ccc;
+}
+.tripleHBar a{
+	font-size:20px;padding:0 5px;
+}
+.fixMenu{
+	float:right;
+}
+.parentFixMenu::after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.fixMenu ul{
+	list-style-type:none;
+}
+.fixMenu ul li a{
+	text-decoration:none;
+	line-height:60px;
+	padding:5px 5px 5px 5px;
+	color:#ccc;
+	font-size:20px;
+}
+.fixMenu ul li{
+	display:inline-block;
+	background-color:#080808;
+}
+.fixMenu ul li a:hover{
+	color:white;
+	background-color:#080808;
+}
+
+.outer-container{
+	position:fixed;
+	top:60px;
+	left:0;
+	right:0;
+	bottom:50px;
+}
+.sidebar{
+	position:absolute;
+	width:100%;
+	background-color:pink;
+}
+.sidebar ul{
+	list-style-type:none;
+}
+.sidebar ul li a{
+	text-decoration:none;
+	line-height:40px;
+	padding:5px 5px 5px 20px;
+	font-size:20px;
+}
+.sidebar{
+	display:none;
+}
+
+.app-container{
+	width:100%;
+	background-color:aqua;
+	overflow-y:auto;
+	position:fixed;
+	top:60px;
+	bottom:50px;
+	left:0;
+	right:0;
+}
+
+.appName{
+	background-color:maroon;
+	color:white;
+	padding:10px;
+	min-height:100%;
+}
+.right{
+	opacity:.5;
+}
+.left,.right{
+	display:none;
+}
+/* Classes Used By JS starts*/
+
+
+.toggleAppContainer{
+width:100%;
+}
+
+/*Classes Used by JS ends*/
+footer{
+	background-color:black;
+	height:50px;
+	text-align:center;
+	position:fixed;
+	bottom:0;
+	width:100%;
+}
+footer>p{
+	line-height:50px;
+}
+@media screen and (min-width:768px){
+.sidebar{
+	background-color:pink;
+	position:fixed;
+	width:0%;
+	left:0;
+	border:none;
+	display:block;
+}
+.app-container{
+padding:2% 3%;
+left:20%;
+overflow:visible;
+}
+.appName{
+max-height:94%;
+overflow-y:auto;
+}
+
+.sidebar>ul{
+	list-style-type: none;
+}
+.sidebar>ul li:first-child a{
+	background-color:blue;
+	color:white;
+}
+.sidebar>ul>li>a{
+	text-decoration: none;
+	color:blue;
+	display:block;
+	width:inherit;
+	text-align: left;
+	padding:10px;
+	font-size:10px;
+	line-height:30px;
+}
+.sidebar>ul>li:not(:first-child)>a:hover
+{
+background-color:white;
+}
+.tripleHBar{
+	display:none;
+}
+.fixMenu{
+	padding-right:20px;
+}
+.companyLogo{
+	line-height:60px;
+	padding-left:20px;
+}
+.companyLogo a:first-child{
+	padding-right:20px;
+}
+.left,.right{
+	display:inline-block;
+}
+
+.sidebar{
+	width:20%;
+	height:100%;
+}
+.sidebar>ul>li>a{
+	font-size:15px;
+	}
+	.app-container{
+width:80%;
+}
+/* Classes Used By JS starts*/
+.toggleSideBar>ul>li>a{
+opacity:0;
+}
+
+.toggleSideBar{
+width:0;
+}
+
+.toggleAppContainer{
+width:100%;
+left:0;
+}
+/*Classes Used by JS ends*/
+}
+
+
+
+
+
